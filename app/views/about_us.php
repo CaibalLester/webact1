@@ -51,19 +51,20 @@
             <!-- First Container -->
             <div class="col-lg-6 col-md-6 col-12 mb-4 mb-lg-7">
                 <div class="custom-block bg-white shadow-lg rounded-corners">
+                <?php if(isset($msg)):?><div class='msg'><h5><?= $msg; ?></h5></div><?php endif;?>
                     <h5 class="mb-4">ENTER INFORMATION</h5>
-                    <form action="<?=site_url('/add_account');?>" method="post">
+                    <form action='/Save' method='post'>
                             
-                            <input type="hidden" name="id" value="<?php if (isset($pro['id'])) {echo $pro['id'];}?>">
+                            <input type="hidden" name="id" value="<?php if(isset($select_us['id'])): ?><?= $select_us['id']; endif; ?>">
                                                                 
                             <label for="username">Username :</label><br>
-                            <input type="text" class="form-control" name="username"  placeholder="Enter username..." required><br>
+                            <input type="text" class="form-control" name="username"  placeholder="Enter username..." value="<?php if(isset($select_us['username'])): ?><?= $select_us['username']; endif; ?>" required><br>
                         
                             <label for="password">Password :</label><br>
-                            <input type="text" class="form-control" name="password"  placeholder="Enter password..." required><br>
+                            <input type="text" class="form-control" name="password"  placeholder="Enter password..." value="<?php if(isset($select_us['password'])): ?><?= $select_us['password']; endif; ?>" required><br>
                         
                             <label for="email">Email :</label><br>
-                            <input type="text" class="form-control" name="email"  placeholder="Enter email..." required><br>
+                            <input type="text" class="form-control" name="email"  placeholder="Enter email..." value="<?php if(isset($select_us['email'])): ?><?= $select_us['email']; endif; ?>" required><br>
                        
                             <label for="email">Usertype :</label><br> 
                             <select name="usertype" class="form-control">
@@ -71,7 +72,8 @@
                                 <option value="user">User</option>
                             </select> <br> 
 
-                        <button type="submit" value="add_account" class="btn btn-primary">Save</button><br>
+                        <button type="submit" value="Submit" class="btn btn-primary">Save</button><br>
+                        
                     </form>
                 </div>
             </div>
@@ -96,7 +98,7 @@
                                     <td><?php echo $user['password']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
                                     <td><?php echo $user['usertype']; ?></td>
-                                    <td><a href="<?site_url('/delete_data'.$user['id'].'' ); ?>" class="btn btn-primary">Delete</a> || <a href="/edit/<?= $user['id'] ?>" class="btn btn-success">Edit</a></td>
+                                    <td><a href='<?= base_url(); ?>/Delete/<?= $user['id']; ?>' class="btn btn-primary">Delete</a> || <a href='<?= base_url(); ?>/Edit/<?= $user['id']; ?>' class="btn btn-success">Edit</a></td>
                                     </tr>
                             <?php endforeach; ?>
                         </tbody>

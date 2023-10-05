@@ -3,34 +3,48 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class User_model extends Model {
 	
-    public function getUsers()
+    public function getUser()
     {
-        return $this->db->table('users')->get_all();
+        $data = $this->db->table('users')->get_all();
+		return $data;
     }
 
-    public function insert_data($username, $password, $email, $usertype)
+    public function save($username, $password, $email, $usertype)
     {
-        $data = array(
+        $data = [
             'username' => $username,
             'password' => $password,
             'email' => $email,
-            'usertype' => $usertype
-        );
-
-        $this->db->table('users')
-                 ->insert($data)
-                 ->exec();
-
-                 if($result)
-                 return true;
+            'usertype' => $usertype,
+        ];
+        return $this->db->table('users')->insert($data);
     }
-	
-    public function delete_data($id)
+
+    public function select($id)
     {
-        $result = $this->db->table('users')->where(array('id' => $id))->delete()->exec();
-        if($result)
-        return true;
+        $userId = $id;
+        $data = $this->db->table('users')->where('id',$userId)->get();
+		return $data;
     }
-   
+
+    public function update($id, $username, $password, $email, $usertype)
+    {
+        $userId = $id;
+        $data = [
+            'username' => $username,
+            'password' => $password,
+            'email' => $email,
+            'usertype' => $usertype,
+        ];
+        return $this->db->table('users')->where('id',$userId)->update($data);
+    }
+
+    public function delete($id)
+    {
+        $userId = $id;
+        $data = $this->db->table('users')->where('id',$userId)->delete();
+		return $data;
+    }
+
 }
 ?>

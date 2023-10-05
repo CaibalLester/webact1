@@ -44,11 +44,11 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/output', 'User::index');
-$router->get('/about', 'User::aboutUS');
-$router->post('/save', 'User::save');
-$router->post('/add_account', 'User::add_account');
-$router->match('save', 'User::insertUser', 'GET|POST');
+$router->get('/', 'Welcome::index');
+$router->get('/output', 'User::ShowData');
+$router->post('/Save', 'User::Save');
+$router->get('/Delete/(:num)', 'User::Delete');
+$router->get('/Edit/(:num)', 'User::Edit');
 
 
 

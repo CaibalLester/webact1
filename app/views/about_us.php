@@ -86,7 +86,7 @@
                                 <th>PASSWORD</th>
                                 <th>EMAIL</th>
                                 <th>USER TYPE</th>
-                                
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,7 +96,8 @@
                                     <td><?php echo $user['password']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
                                     <td><?php echo $user['usertype']; ?></td>
-                                </tr>
+                                    <td><a href="<?site_url('/delete_data'.$user['id'].'' ); ?>" class="btn btn-primary">Delete</a> || <a href="/edit/<?= $user['id'] ?>" class="btn btn-success">Edit</a></td>
+                                    </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

@@ -28,6 +28,12 @@ class User extends Controller {
         $this->call->view('about_us', $data);
     }
 
+    public function delete_data()
+    {
+        if($this->user_model->delete_data())
+            redirect('/about_us');
+            exit;
+    }
 
         
     }

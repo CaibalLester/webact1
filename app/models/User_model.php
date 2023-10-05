@@ -25,7 +25,12 @@ class User_model extends Model {
                  return true;
     }
 	
-   
+    public function delete_data($id)
+    {
+        $result = $this->db->table('users')->where(array('id' => $id))->delete()->exec();
+        if($result)
+        return true;
+    }
    
 }
 ?>

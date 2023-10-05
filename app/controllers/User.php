@@ -2,16 +2,37 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class User extends Controller {
-	public function lala()
+
+    public function __construct()
     {
-        echo "Dukit!";
+        parent:: __construct();
+        $this->call->model('user_model');
+    }
+	
+
+    public function aboutUS()
+    {
+        echo "Testing";
     }
 
-    public function lele()
+    public function index()
     {
-        $data['name'] = 'Panget Chynna';
-        $data['age'] = '125';
+        $this->call->model('user_model');
+        $data['users'] = $this->user_model->getUsers();
         $this->call->view('about_us', $data);
     }
-}
+
+    public function add_account()
+    {
+        $data =  $this->user_model->insert_data($this->io->post('username'), $this->io->post('password'), $this->io->post('email'), $this->io->post('usertype'));
+        $this->call->view('about_us', $data);
+    }
+
+
+        
+    }
+
+   
+
+
 ?>

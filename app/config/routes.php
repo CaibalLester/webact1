@@ -44,6 +44,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 
-$router->get('/', 'Welcome::index');
-$router->get('/papa', 'User::lala');
-$router->get('/mama', 'User::lele');
+$router->get('/output', 'User::index');
+$router->get('/about', 'User::aboutUS');
+$router->post('/save', 'User::save');
+$router->post('/add_account', 'User::add_account');
+$router->match('save', 'User::insertUser', 'GET|POST');
+
+
+
+
